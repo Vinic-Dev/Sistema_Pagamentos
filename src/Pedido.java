@@ -1,7 +1,7 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.format.DateTimeFormatter;
 
 public class Pedido implements Imprimivel {
     private LocalDate data;
@@ -20,13 +20,12 @@ public class Pedido implements Imprimivel {
         this.metodoPagamento = metodoPagamento;
     }
 
-    public boolean processarPagamento() {
+    public boolean processarPagamento(double valor) {
         if (this.metodoPagamento == null) {
             System.out.println("ERRO: Nenhum método de pagamento foi definido.");
             return false;
         }
-        double total = calcularTotal();
-        return this.metodoPagamento.processarPagamento(total);
+        return this.metodoPagamento.processarPagamento(valor);
     }
 
     public void adicionarItem(ItemPedido item) {
